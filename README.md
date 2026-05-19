@@ -2,3 +2,4 @@ Okay, welcome to the official JuneOS project page!
 Here, I'm building an operating system in solely Python. My goal is to prove that Python is superior, and can be used in anything!
 My project is currently in early dev, but I might need some help! I'm calling all you awesome Python devs!
 By the way, don't use this inside of a Virtual Machine, use it in a compiler like OnlinePython or VS.
+JuneOS version 1.3 will introduce more floppy/RAM integration, as I have not used them alot throughout the project, 1.2 will introduce new programs.
