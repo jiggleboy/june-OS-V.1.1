@@ -11,16 +11,21 @@ with open("happytreefriends.pkl", "wb") as file:
 # BIOS loaders ↓
 BIOS = "0x55AA"
 FBIOS = "0x55AA"
-if BIOS == "0x55aa":
-    print("Proceeding on to log-in.")
-    time.sleep(3)
-    tt.clr()
-    time.sleep(3)
-elif FBIOS == "0x55AA":
-    print("Proceeding on to log-in.")
-    time.sleep(3)
-    tt.clr()
-    time.sleep(3)
+if BIOS == "0x55AA" or FBIOS == "0x55AA":
+    print("===================")
+    print("   juneOS booter")
+    print("===================")
+    print(" [1]: quit")
+    print("         [2]: log in")
+    print("---------------------")
+    mode = str(input("Choose a mode: "))
+    if mode == "1":
+        print("Shutting down...")
+        sys.exit()
+    elif mode == "2":
+        pass
+        tt.clr()
+        time.sleep(2)
 else:
     print("JuneOS access has been denied--this software is probably pirated. Check the code first, though. The boot-default to prevent copies is 0x0000. Change the BIOS code(s) to 0x55AA, unless you want this garbage.")
     sys.exit()
@@ -70,7 +75,7 @@ terminalOn = True
 while terminalOn:
     userComTerminal = str(input(f"{cursorID} "))
     if userComTerminal == "help":
-        print("jokecommands: prints all joke commands | help: prints all commands | whoami: prints the current user | about: prints the information 'bout the OS | File commands, and subprocesses: newfile, ploadfile (prints and loads files), removefile, ls, and runpy (runs python code) | ")
+        print("jokecommands: prints all joke commands | help: prints all commands | whoami: prints the current user | about: prints the information 'bout the OS | newfile: makes a new.txt file, useful for personal info on this VM | ploadfile: prints the loaded file from the C: directory (the whole project) | deletefile: deletes the chosen file | ls: shows the file directory | runpy: runs python commands")
         time.sleep(2)
     elif userComTerminal == "htf":
         with open("happytreefriends.pkl", "rb") as file:
@@ -118,8 +123,7 @@ while terminalOn:
         if os.path.exists(full_path):
         # This tells the host computer to run 'python filename.py'
             os.system(f"python {full_path}")
-        else:
-            print("Error: File not found.")
+
 
 
 
