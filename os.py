@@ -44,6 +44,8 @@ elif userinput == "log in":
         if inpus == susn and inpup == susp:
             with open("cursor.pkl", "rb") as file:
                 cursorID = pickle.load(file)
+            usn = susn
+            usp = susp
         else:
             print("Error loading your save: either wrong password or user.")
             sys.exit()
@@ -51,10 +53,6 @@ elif userinput == "log in":
         print("No saved account found.")
         sys.exit()
 # prefrences (more soon)
-time.sleep(3)
-tt.clr()
-time.sleep(3)
-print(f"Welcome to JuneOS, {susn}!")
 time.sleep(3)
 tt.clr()
 time.sleep(3)
@@ -72,18 +70,65 @@ terminalOn = True
 while terminalOn:
     userComTerminal = str(input(f"{cursorID} "))
     if userComTerminal == "help":
-        print("jokecommands: prints all joke commands | help: prints all commands | whoami: prints the current user | about: prints the information 'bout the OS | clr/cls: clears Terminal")
+        print("jokecommands: prints all joke commands | help: prints all commands | whoami: prints the current user | about: prints the information 'bout the OS | File commands, and subprocesses: newfile, ploadfile (prints and loads files), removefile, ls, and runpy (runs python code) | ")
         time.sleep(2)
     elif userComTerminal == "htf":
         with open("happytreefriends.pkl", "rb") as file:
             msg = pickle.load(file)
         print(msg)
     elif userComTerminal == "whoami":
-        print(f"The logged in user is {susn}.")
+        print(f"The logged in user is {usn}.")
     elif userComTerminal == "about":
         print("JuneOS is an independent project made by Bryan Silva. The project right now is in earlydev, so don't expect much from this simple 'operating system'.")
-    elif userComTerminal == "clr" or "cls":
-        tt.clr()
-    elif userComTerminal.startswith("echo "):
-        message = userComTerminal[5:]
-        print(message)
+    elif userComTerminal == "i'llmissyougoodbye":
+        pass
+        print("It's come a long way since September---we've got new friends, we've started an eocosystem of kindness! But, this is one change that we're simply not ready for. Thank you for your service' it's been a great time! Goood luuuck!")
+    elif userComTerminal == "jokecommands":
+        pass
+        print("htf: happy tree friends meme")
+    elif userComTerminal == "syscheck":
+        print(f"BIOS: {BIOS} | ACC: {usn} | CURS: {floppy.ldFromFloppy(0)}")
+    elif userComTerminal == "newfile":
+        contents = str(input("Contents: "))
+        filename = str(input("Filename: "))
+        with open(f"{filename}.txt", "wb") as file:
+            pickle.dump((contents), file)
+    elif userComTerminal == "ploadfile":
+        filename2 = str(input("Enter filename: "))
+        with open(f"{filename2}.txt", "rb") as file:
+            sfile = pickle.load(file)
+            print(sfile)
+    elif userComTerminal == "deletefile":
+        filename3 = str(input("Enter filename to delete: "))
+        full_filename = f"{filename3}.txt"
+        if os.path.exists(full_filename):
+            os.remove(full_filename)
+            print(f"Success: {full_filename} was wiped from the drive.")
+        else:
+            print(f"Error: {full_filename} does not exist.")
+    elif userComTerminal == "ls":
+        print("--- Files ---")
+        for file in os.listdir("."):
+            if file.endswith((".txt", ".pkl", ".py")):
+                print(file)
+    elif userComTerminal == "runpy":
+        filename = input("Enter Python file to run (without .py): ").strip()
+        full_path = f"{filename}.py"
+
+        if os.path.exists(full_path):
+        # This tells the host computer to run 'python filename.py'
+            os.system(f"python {full_path}")
+        else:
+            print("Error: File not found.")
+
+
+
+
+
+
+
+
+
+
+
+
